@@ -1,7 +1,5 @@
-require "matchQ2A/version"
+$LOAD_PATH << File.dirname(__FILE__) unless $LOAD_PATH.include?(File.dirname(__FILE__))
 
-# All code in the gem is namespaced under this module.
-module MatchQ2A
-	# The detailing of the version in use
-	VersionInUse= MatchQ2A::VERSION
-end
+require 'matchQ2A/version'
+require 'matchQ2A/validator'
+require 'matchQ2A/errors'

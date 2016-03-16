@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'matchQ2A'
+require "matchQ2A/data_receiver"
 
-puts MatchQ2A::VersionInUse
+MatchQ2A::DataReceiver.execute(STDOUT, STDIN, STDERR);
