@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'matchQ2A'
+
+puts MatchQ2A::VersionInUse
