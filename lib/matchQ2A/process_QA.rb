@@ -5,6 +5,7 @@ module MatchQ2A
 
     attr_accessor :content, :sentences, :questions, :answers, :sentence_of_answer
 
+    #Intialize data to processed with content, sentences, questions and answers
     def initialize(content, sentences, questions, answers)
       @content = content
       @sentences = sentences
@@ -13,12 +14,15 @@ module MatchQ2A
       @sentence_of_answer=[]
     end
 
+    #Main function called for intiating process to map Q and A.
     def processQA()
       check_index_for_answers()
       sent_words_of_answer=convert_sentence_to_group_of_words()
       process_QA_data(sent_words_of_answer)
     end
 
+private
+    # Check answer with content data and find the respective index associated to.
     def check_index_for_answers()
       answers.each do |a|
         glob_i = content =~ /#{Regexp.escape(a)}/
@@ -35,12 +39,14 @@ module MatchQ2A
       end
     end
 
+    #Convert the list of sentences in the whole content to group of words array
     def convert_sentence_to_group_of_words()
       sent_words_of_answer = sentence_of_answer.map { |sent_i|
         words(sentences[sent_i])
       }
     end
 
+    #Process the data by comparing array of words with answers and questions. Based on the common size decide based on probability.
     def process_QA_data(sent_words_of_answer)
       quest_answers = Array.new(questions.size)
       questions.size.times {
@@ -66,6 +72,7 @@ module MatchQ2A
       print_output(quest_answers)
     end
 
+    #Print the output of the answers in the reordered format joined by \\n
     def print_output(quest_answers)
       puts "Matched answers as per question order:\n"
       puts quest_answers.join("\n")

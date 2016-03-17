@@ -2,4 +2,5 @@
 
 require "matchQ2A/data_receiver"
 
+#Execute to fetch inuts from user to process further
 MatchQ2A::DataReceiver.execute(STDOUT, STDIN, STDERR);

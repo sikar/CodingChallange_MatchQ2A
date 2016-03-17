@@ -37,3 +37,7 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 ## Contributing
 
 # Not in Use now. Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/matchQ2A.
+
+
+#If having issue in entering more than 1023 characters through your terminal, switch to canonical mode and try
+# Try doing that using `stty -icanon`
