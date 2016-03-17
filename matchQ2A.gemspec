@@ -1,6 +1,6 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+$:.unshift(lib) unless $:.include?(lib)
 require 'matchQ2A/version'
 
 Gem::Specification.new do |spec|
@@ -15,7 +15,9 @@ Gem::Specification.new do |spec|
   spec.license       = "UNLICENSE"
 
   spec.executables   = ["matchQ2A"]
-  spec.require_paths = ["lib"]
+  spec.files       = Dir.glob("lib/**/*.rb")
+  spec.test_files  = Dir.glob("test/**/*.rb")
+  #spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"

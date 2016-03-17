@@ -1,4 +1,5 @@
 module MatchQ2A
+
   class ProcessQA
     include MatchQ2A::Helper
 
@@ -24,7 +25,7 @@ module MatchQ2A
         sent_offset = 0
         sent_i = 0
         sentences.each_with_index do |s, i|
-          if (glob_i !=nil ) && ( (sent_offset + s.size) > glob_i )
+          if ( (sent_offset + s.size) > glob_i )
             sent_i = i
             break
           end

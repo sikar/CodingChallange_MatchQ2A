@@ -1,3 +1,5 @@
+$LOAD_PATH << File.dirname(__FILE__) unless $LOAD_PATH.include?(File.dirname(__FILE__))
+
 require 'matchQ2A/errors'
 require 'matchQ2A/validator'
 require 'matchQ2A/helper'
@@ -36,7 +38,10 @@ module MatchQ2A
       (0..6).each do |i|
         contentInUse[i]= enc(gets.chomp);
       end
+      validateAndprocess(contentInUse)
+    end
 
+    def validateAndprocess( contentInUse )
       sentences = contentInUse[0].split(/\.(?!\s[a-z])/) # do not clash shorthand with punctum
       questions = contentInUse[1..5];
       answers = contentInUse[6].chomp.split(';')
@@ -52,7 +57,7 @@ module MatchQ2A
 
       puts "\n"
 
-      ProcessQA.new(contentInUse,sentences,questions,answers).processQA()
+      ProcessQA.new(contentInUse[0],sentences,questions,answers).processQA()
     end
 
   end
