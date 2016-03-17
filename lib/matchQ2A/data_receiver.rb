@@ -1,8 +1,12 @@
 require 'matchQ2A/errors'
 require 'matchQ2A/validator'
+require 'matchQ2A/helper'
+require 'matchQ2A/process_QA'
 
 module MatchQ2A
   class DataReceiver
+    include MatchQ2A::Helper
+    include MatchQ2A::Validator
     attr_reader :stdout, :stdin
 
     def self.execute(stdout, stdin, stderr)
@@ -30,10 +34,25 @@ module MatchQ2A
       stdout.puts " Start inputing your data as defined: \n"
 
       (0..6).each do |i|
-        contentInUse[i]= stdin.gets.chomp;
+        contentInUse[i]= enc(gets.chomp);
+      end
+
+      sentences = contentInUse[0].split(/\.(?!\s[a-z])/) # do not clash shorthand with punctum
+      questions = contentInUse[1..5];
+      answers = contentInUse[6].chomp.split(';')
+
+      if ( !isAllInputClear(contentInUse) ) || ( !isInputContent(contentInUse[0]) ) || ( !isAnswerAvailableForAllQues(answers))
+        puts "Invalid Input data. Please cross check your input details as per the conditions provided."
       end
 
       puts contentInUse;
+      puts sentences;
+      puts questions;
+      puts answers;
+
+      puts "\n"
+
+      ProcessQA.new(contentInUse,sentences,questions,answers).processQA()
     end
 
   end

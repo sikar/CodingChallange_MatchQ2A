@@ -1,28 +1,34 @@
 module MatchQ2A
-	class Validator
+	module Validator
+
+			extend self
 
       def isInputContent(contentPara)
-          if ( contentPara.length() > 5000 ) then
-            #throw error;
+          if ( contentPara.length() > 5000 || contentPara.length() == 0 )
+            return false
           else
-            #throw error;
+            return true
           end
-					return true;
       end
 
       def isAllInputClear(array_str)
-        if ( array_str.length() !=7 ) then
-          #throw error;
+        if ( array_str.length() !=7 )
+          return false
         else
           if ( array_str.nil? || array_str.empty? )
-            #throw error;
+            return false
+					end
         end
 				return true;
       end
 
 			def isAnswerAvailableForAllQues(ans_arr_str)
-				if (ans_arr_str.length() !=5) then
-					#throw error
+				if (ans_arr_str.length() !=5)
+					return false
+				else
+					if ( ans_arr_str.nil? || ans_arr_str.empty? )
+						return false
+					end
 				end
 				return true;
 			end
